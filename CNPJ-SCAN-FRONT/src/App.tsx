@@ -1,19 +1,36 @@
-import { Box, Button, Heading, VStack } from '@chakra-ui/react'
+import { Box, Heading, VStack } from '@chakra-ui/react';
 import React from 'react';
 import Header from './components/ui/header';
-import Footer from './components/ui/footer'; 
+import Footer from './components/ui/footer';
+import MeuBotao from './components/ui/button';
 
 function App() {
   return (
-     <VStack w="100%" minHeight="100vh" justifyContent="space-between">
+    // 1. Contêiner Principal: Deve ser um Flexbox (VStack/Flex) com altura total.
+    <VStack w="100%" minHeight="100vh" spacing={0} align="stretch"> 
       
-     
+      {/* Header */}
       <Header title="CNPJ Scan" />
         
-      <Box flex="1" p={8}>
-   
+      {/* 2. Conteúdo Principal: Deve ter flexGrow={1} para ocupar o espaço restante. */}
+      <Box 
+        flexGrow={1} 
+        p={8} 
+        w="100%"
+        textAlign="center" 
+      >
+        <Heading size="3xl" mb={8}>
+            Converta PDF para EXCEL.
+        </Heading>
+    
+        <MeuBotao
+          texto="Selecionar Arquivo PDF"
+          onClick={() => console.log("Arquivos selecionados!")}
+          size="lg"
+        />
       </Box>
 
+      {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
       <Footer 
         title="CNPJ Scan" 
         copyrightText="Grupo 3 NEXT"
