@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import {Box,Button,Checkbox,VStack,Text,Menu,MenuButton,MenuList,MenuItem} from "@chakra-ui/react";
 
-const MultiSelectWithCheckbox = () => {
+const MenuCustom = () => {
   const [selected, setSelected] = useState<string[]>([]);
   const options = ["React", "Vue", "Angular", "Svelte", "Next.js"];
 
@@ -53,4 +53,4 @@ const MultiSelectWithCheckbox = () => {
   );
 };
 
-export default Menu;
+export default MenuCustom;

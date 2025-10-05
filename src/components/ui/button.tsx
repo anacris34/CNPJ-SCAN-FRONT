@@ -1,29 +1,31 @@
 import React from 'react';
 import { Button, Center } from '@chakra-ui/react';
 
+interface MeuBotaoProps {
+  texto: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
+  colorScheme?: string;
+  variant?: "solid" | "outline" | "ghost" | "link";
+}
 
-
-const MeuBotao: React.FC = () => {
-  
-  // Função de clique tipada (opcional, mas boa prática)
-  // O evento do botão é do tipo 'React.MouseEvent<HTMLButtonElement>'
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    // Você pode acessar propriedades do evento se precisar, como 'event.currentTarget'
-    console.log('Botão Clicado!');
-  };
-
+const MeuBotao: React.FC<MeuBotaoProps> = ({
+  texto,
+  onClick,
+  size = "md",
+  colorScheme = "blue",
+  variant = "solid",
+}) => {
   return (
-    <Center w='100%' h='400px'> 
-    <Button
-      // Props do Chakra UI
-      colorScheme='white' 
-      size='2xl'
-      variant='solid'
-      // Função de clique
-      onClick={handleClick}
-    >
-      Selecionar Arquivo PDF
-    </Button>
+    <Center w="100%">
+      <Button
+        colorScheme={colorScheme}
+        size={size}
+        variant={variant}
+        onClick={onClick}
+      >
+        {texto}
+      </Button>
     </Center>
   );
 };
