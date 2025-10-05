@@ -3,7 +3,7 @@ import {Box,Button,Checkbox,VStack,Text,Menu,MenuButton,MenuList,MenuItem} from 
 
 const MenuCustom = () => {
   const [selected, setSelected] = useState<string[]>([]);
-  const options = ["React", "Vue", "Angular", "Svelte", "Next.js"];
+  const options = ["Nome Empresarial", "CNPJ", "Data de Abertura", "CEP"];
 
   const handleToggle = useCallback((option: string) => {
     setSelected((prev) =>
