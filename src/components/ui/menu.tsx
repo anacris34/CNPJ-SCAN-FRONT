@@ -26,7 +26,7 @@ const MenuCustom = () => {
     <CheckboxGroup value={values} onChange={setValues}>
       <Menu.Root closeOnSelect ={false}>
         <Menu.Trigger asChild>
-          <Button variant="solid" size="xl" rounded="full">
+          <Button variant="solid" size="xl" rounded="full" w="700px" h="70px">
           </Button>
         </Menu.Trigger>
         <Portal>
