@@ -1,56 +1,63 @@
-import React, { useState, useCallback } from "react";
-import {Box,Button,Checkbox,VStack,Text,Menu,MenuButton,MenuList,MenuItem} from "@chakra-ui/react";
+import { Button, Menu, Portal, CheckboxGroup } from "@chakra-ui/react" // Trocamos useCheckboxGroup por um componente para mais controle
+import { useState } from "react" // Precisamos do useState para controlar os valores
+
+const allValues = ["name", "dataabertura", "cep"] // Valores de todas as opções
+const items = [
+  { title: "Nome", value: "name" },
+  { title: "Data de Abertura", value: "dataabertura" },
+  { title: "CEP", value: "cep" },
+]
 
 const MenuCustom = () => {
-  const [selected, setSelected] = useState<string[]>([]);
-  const options = ["Nome Empresarial", "CNPJ", "Data de Abertura", "CEP"];
+  // Usamos useState para controlar diretamente os valores selecionados
+  const [values, setValues] = useState(allValues) // Começa com todos selecionados
 
-  const handleToggle = useCallback((option: string) => {
-    setSelected((prev) =>
-      prev.includes(option)
-        ? prev.filter((item) => item !== option)
-        : [...prev, option]
-    );
-  }, []);
-
-  const label =
-    selected.length > 0
-      ? selected.length <= 2
-        ? selected.join(", ")
-        : `${selected.length} selecionado(s)`
-      : "Selecione";
+  const handleToggleAll = () => {
+    // Se todos já estão marcados, desmarca todos. Senão, marca todos.
+    if (values.length === allValues.length) {
+      setValues([])
+    } else {
+      setValues(allValues)
+    }
+  }
 
   return (
-    <Box p={8} maxW="400px" mx="auto">
-      <Menu closeOnSelect={false}>
-        <MenuButton as={Button} w="100%">
-          {label}
-        </MenuButton>
+    // O CheckboxGroup nos dá o controle que precisamos
+    <CheckboxGroup value={values} onChange={setValues}>
+      <Menu.Root closeOnSelect ={false}>
+        <Menu.Trigger asChild>
+          <Button variant="solid" size="xl" rounded="full">
+          </Button>
+        </Menu.Trigger>
+        <Portal>
+          <Menu.Positioner>
+            <Menu.Content>
+              <Menu.ItemGroup>
+                <Menu.ItemGroupLabel>Opções</Menu.ItemGroupLabel>
+                {/* Item "Todos" com lógica customizada */}
+                <Menu.CheckboxItem
+                  value="todos" // Valor simbólico
+                  checked={values.length === allValues.length}
+                  onCheckedChange={handleToggleAll}
+                >
+                  Todos
+                  <Menu.ItemIndicator />
+                </Menu.CheckboxItem>
 
-        <MenuList maxH="200px" overflowY="auto">
-          {options.map((option) => (
-            <MenuItem key={option} closeOnSelect={false}>
-              <Checkbox
-                isChecked={selected.includes(option)}
-                onChange={() => handleToggle(option)}
-              >
-                {option}
-              </Checkbox>
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
+                {/* Itens normais */}
+                {items.map(({ title, value }) => (
+                  <Menu.CheckboxItem key={value} value={value}>
+                    {title}
+                    <Menu.ItemIndicator />
+                  </Menu.CheckboxItem>
+                ))}
+              </Menu.ItemGroup>
+            </Menu.Content>
+          </Menu.Positioner>
+        </Portal>
+      </Menu.Root>
+    </CheckboxGroup>
+  )
+}
 
-      {selected.length > 0 && (
-        <VStack align="start" mt={4} spacing={1}>
-          <Text fontWeight="bold">Selecionados:</Text>
-          {selected.map((item) => (
-            <Text key={item}>• {item}</Text>
-          ))}
-        </VStack>
-      )}
-    </Box>
-  );
-};
-
-export default MenuCustom;
+export default MenuCustom
