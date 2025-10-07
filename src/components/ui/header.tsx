@@ -1,3 +1,5 @@
+// src/components/ui/header.tsx (Com Chakra UI)
+
 import React, { FC } from 'react';
 import { Flex, Image, Heading } from '@chakra-ui/react'; // 🚨 Importe os componentes Chakra
 import logoImage from '../../assets/logo.png'; 

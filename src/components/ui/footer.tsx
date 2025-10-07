@@ -31,7 +31,7 @@ const Footer: FC<FooterProps> = ({ title, copyrightText }) => {
         <Text fontWeight="bold" fontSize="lg" mb={-5} p={3}>
           {title}
         </Text>
-
+        
         {/* Linha de direitos autorais */}
         <Text fontSize="sm" p={3}>
           &copy; {currentYear} {finalCopyright}. Todos os direitos reservados.
