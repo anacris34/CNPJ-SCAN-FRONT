@@ -1,40 +1,29 @@
-import React from 'react';
-import { Box, Button, Center, Flex, Text, FileUpload } from '@chakra-ui/react';
-import { HiUpload } from "react-icons/hi"
+import React from "react";
+import { IconButton, Flex, Link } from "@chakra-ui/react";
+import { IoHomeOutline } from "react-icons/io5";
 
-
-const MeuBotao: React.FC = () => {
-  
-  // Função de clique tipada (opcional, mas boa prática)
-  // O evento do botão é do tipo 'React.MouseEvent<HTMLButtonElement>'
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    // Você pode acessar propriedades do evento se precisar, como 'event.currentTarget'
-    console.log('Botão Clicado!');
-  };
-
+const Casa: React.FC = () => {
   return (
     <Flex
-      direction='column'
-      align='center'
-      justify='center'
-      minH='100vh'
-      gap={4} 
+      direction="column"
+      align="center"
+      justify="center"
+      minH="100vh"
+      gap={4}
     >
-    <FileUpload.Root>
-      <FileUpload.HiddenInput />
-      <FileUpload.Trigger asChild>
-        <Button // Props do Chakra UI
-          colorScheme='white' 
-          size='2xl'
-          variant='solid'
-          >
-          <HiUpload /> Selecionar Arquivo PDF
-        </Button>
-      </FileUpload.Trigger>
-      <FileUpload.List />
-    </FileUpload.Root>
+      <Link href="/" _hover={{ textDecoration: "none" }}>
+        <IconButton
+          aria-label="Ir para home"
+          boxShadow="md"
+          rounded="full"
+          variant="solid"
+          size="lg"
+        >
+          <IoHomeOutline color="#036DC5" />
+        </IconButton>
+      </Link>
     </Flex>
   );
 };
 
-export default MeuBotao;
+export default Casa;

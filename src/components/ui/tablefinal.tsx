@@ -1,72 +1,141 @@
-import { Table, Box } from "@chakra-ui/react"
+import React, { useState, useEffect } from 'react';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Box,
+  Heading,
+  Spinner,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Button,
+  Flex,
+} from '@chakra-ui/react';
 
-const items = [
-  { title: "Nome", value: "name" },
-  { title: "Data de Abertura", value: "dataabertura" },
-  { title: "CEP", value: "cep" },
-]
-//dados fake
-const dados = [
-  { name: "Empresa ABC", dataabertura: "01/01/2020", cep: "12345-678" },
-  { name: "Empresa XYZ", dataabertura: "15/03/2021", cep: "98765-432" },
-  { name: "Empresa 123", dataabertura: "20/07/2019", cep: "11111-222" },
-  { name: "Empresa Tech", dataabertura: "10/05/2022", cep: "33333-444" },
-  { name: "Empresa Digital", dataabertura: "05/08/2023", cep: "55555-666" },
-]
+function DynamicTable() {
+  const [data, setData] = useState([]);
+  const [columns, setColumns] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const TabelaDinamica = ({ columnsToShow = [] }) => {
-  const getColumnTitle = (value) => {
-    const item = items.find(item => item.value === value)
-    return item ? item.title : value
+  // Função para buscar dados do backend
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      // Substitua pela URL do seu backend
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      
+      if (!response.ok) {
+        throw new Error('Erro ao buscar dados');
+      }
+      
+      const result = await response.json();
+      
+      // Se houver dados, extrair as colunas dinamicamente
+      if (result.length > 0) {
+        // Pegar as chaves do primeiro objeto como colunas
+        const cols = Object.keys(result[0]);
+        setColumns(cols);
+        setData(result);
+      }
+      
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  // Buscar dados ao montar o componente
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Estado de carregamento
+  if (loading) {
+    return (
+      <Flex justify="center" align="center" minH="400px">
+        <Spinner size="xl" color="blue.500" thickness="4px" />
+      </Flex>
+    );
+  }
+
+  // Estado de erro
+  if (error) {
+    return (
+      <Box p={6}>
+        <Alert status="error" borderRadius="md">
+          <AlertIcon />
+          <Box>
+            <AlertTitle>Erro ao carregar dados</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Box>
+        </Alert>
+        <Button mt={4} colorScheme="blue" onClick={fetchData}>
+          Tentar Novamente
+        </Button>
+      </Box>
+    );
+  }
+
+  // Estado sem dados
+  if (data.length === 0) {
+    return (
+      <Box p={6}>
+        <Alert status="info" borderRadius="md">
+          <AlertIcon />
+          <AlertDescription>Nenhum dado disponível</AlertDescription>
+        </Alert>
+      </Box>
+    );
   }
 
   return (
-    <Box bg="white" borderRadius="lg" 
-      boxShadow="sm" overflow="hidden"minH="400px"
-    >
-      {columnsToShow.length > 0 ? (
-        <Box overflowX="auto">
-          <Table.Root variant="outline" size="lg" stickyHeader>
-            <Table.Header bg="gray.100">
-              <Table.Row>
-                {columnsToShow.map((value) => (
-                  <Table.ColumnHeader key={value} fontWeight="bold">
-                    {getColumnTitle(value)}
-                  </Table.ColumnHeader>
-                ))}
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {dados.map((row, index) => (
-                <Table.Row 
-                  key={index}
-                  _hover={{ bg: "gray.50" }}
-                  transition="background 0.2s"
-                >
-                  {columnsToShow.map((value) => (
-                    <Table.Cell key={value}>
-                      {row[value]}
-                    </Table.Cell>
-                  ))}
-                </Table.Row>
+    <Box p={6} bg="gray.50" minH="100vh">
+      <Heading mb={6} size="lg" color="gray.700">
+        Dados do Backend
+      </Heading>
+      
+      <TableContainer bg="white" borderRadius="lg" boxShadow="md">
+        <Table variant="simple" colorScheme="blue">
+          <Thead bg="blue.500">
+            <Tr>
+              {columns.map((column) => (
+                <Th key={column} color="white" textTransform="capitalize">
+                  {column.replace('_', ' ')}
+                </Th>
               ))}
-            </Table.Body>
-          </Table.Root>
-        </Box>
-      ) : (
-        <Box p={12} textAlign="center">
-          <Box fontSize="4xl" mb={3}>
-          </Box>
-          <Box fontSize="lg" fontWeight="semibold" color="gray.700" mb={2}>
-            Nenhuma coluna selecionada
-          </Box>
-          <Box color="gray.500">
-            Selecione as colunas no menu acima para visualizar a tabela
-          </Box>
-        </Box>
-      )}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data.map((row, rowIndex) => (
+              <Tr key={rowIndex} _hover={{ bg: 'gray.50' }}>
+                {columns.map((column) => (
+                  <Td key={column}>
+                    {typeof row[column] === 'object'
+                      ? JSON.stringify(row[column])
+                      : row[column]}
+                  </Td>
+                ))}
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
+      
+      <Button mt={4} colorScheme="blue" onClick={fetchData}>
+        Recarregar Dados
+      </Button>
     </Box>
-  )
+  );
 }
 
-export default TabelaDinamica
+export default DynamicTable;
