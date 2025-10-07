@@ -4,6 +4,7 @@ import Header from './components/ui/header';
 import Footer from './components/ui/footer';
 import MeuBotao from './components/ui/button';
 import MenuCustom from './components/ui/menu';
+import TabelaDinamica from './components/ui/table';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           size="lg"
         />
         <MenuCustom/>
+        <TabelaDinamica/>
       </Box>
 
       {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
