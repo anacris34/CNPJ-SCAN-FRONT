@@ -16,7 +16,7 @@ function App() {
       <Box 
         flexGrow={1} 
         p={8} 
-        w="100%"
+        w="60%"
         textAlign="center" 
       >
         <Heading size="3xl" mb={8}>

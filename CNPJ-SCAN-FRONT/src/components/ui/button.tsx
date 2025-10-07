@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Center } from '@chakra-ui/react';
-
+import { Box, Button, Center, Flex, Text, FileUpload } from '@chakra-ui/react';
+import { HiUpload } from "react-icons/hi"
 
 
 const MeuBotao: React.FC = () => {
@@ -13,20 +13,28 @@ const MeuBotao: React.FC = () => {
   };
 
   return (
-    <Center w='100%' h='400px'> 
-    <Button
-      // Props do Chakra UI
-      colorScheme='white' 
-      size='2xl'
-      variant='solid'
-      // Função de clique
-      onClick={handleClick}
+    <Flex
+      direction='column'
+      align='center'
+      justify='center'
+      minH='100vh'
+      gap={4} 
     >
-      Selecionar Arquivo PDF
-    </Button>
-    </Center>
+    <FileUpload.Root>
+      <FileUpload.HiddenInput />
+      <FileUpload.Trigger asChild>
+        <Button // Props do Chakra UI
+          colorScheme='white' 
+          size='2xl'
+          variant='solid'
+          >
+          <HiUpload /> Selecionar Arquivo PDF
+        </Button>
+      </FileUpload.Trigger>
+      <FileUpload.List />
+    </FileUpload.Root>
+    </Flex>
   );
 };
 
 export default MeuBotao;
-
