@@ -13,7 +13,7 @@ const DownloadCSV = () => {
     >
       <Button
         variant="solid"
-        colorPalette="white"
+        color="white"
         boxShadow="md"
         size="2xl"
         rounded="md"

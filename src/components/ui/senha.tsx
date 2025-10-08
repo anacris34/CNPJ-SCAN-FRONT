@@ -1,5 +1,5 @@
 //npx @chakra-ui/cli snippet add password-input
-import { PasswordInput } from "@/components/ui/password-input"
+import { PasswordInput } from "@/components/ui/senha"
 import { useState } from "react"
 
 const senha = () => {

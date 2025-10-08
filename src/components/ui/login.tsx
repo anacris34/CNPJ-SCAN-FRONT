@@ -1,5 +1,5 @@
 import { Button, Field, Input, Stack } from "@chakra-ui/react"
-import { PasswordInput } from "@/components/ui/password-input"
+import { PasswordInput } from "@/components/ui/senha"
 import { useForm } from "react-hook-form"
 
 interface FormValues {
