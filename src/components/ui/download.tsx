@@ -1,6 +1,6 @@
 import { Button, DownloadTrigger } from "@chakra-ui/react"
 
-//const data = tabela backend
+const data = "1,2"
 
 const DownloadCSV = () => {
   return (
