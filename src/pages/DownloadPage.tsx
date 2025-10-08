@@ -17,7 +17,7 @@ function Download() {
           Os dados foram convertidos
         </Text>
         <Center>
-          <TabelaDinamica />
+          <Tabela />
         </Center>
 
         <Flex align="top-center" justify="center" gap={7} mt={2}>
