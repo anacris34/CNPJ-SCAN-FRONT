@@ -6,16 +6,12 @@ import DownloadPage from './pages/DownloadPage';
 function App() {
 
   return (
-    
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/page2" element={<ProcessPage/>} />
-      <Route path="/download" element={<DownloadPage/>} />
+      <Route path="/page3" element={<DownloadPage/>} />
     </Routes>
-    
   );
 }
-
-
 
 export default App;
