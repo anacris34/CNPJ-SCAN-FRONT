@@ -13,6 +13,7 @@ const Casa: React.FC = () => {
     >
       <Link href="/" _hover={{ textDecoration: "none" }}>
         <IconButton
+          colorPalette="white"
           aria-label="Ir para home"
           boxShadow="md"
           rounded="full"
