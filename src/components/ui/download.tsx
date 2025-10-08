@@ -1,6 +1,7 @@
 import { Button, DownloadTrigger, Text } from "@chakra-ui/react";
+import { IoMdDownload } from "react-icons/io";
 
-const data = "[[1,2],[1,2]]";
+const data = "DadosBackEnd";
 
 const DownloadCSV = () => {
   return (
@@ -17,6 +18,7 @@ const DownloadCSV = () => {
         size="2xl"
         rounded="md"
       >
+        <IoMdDownload color="#036DC5"/>
         <Text color="#036DC5" textStyle="md" fontWeight="bold">
           Download CSV
         </Text>

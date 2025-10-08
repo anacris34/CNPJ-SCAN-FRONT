@@ -16,6 +16,7 @@ import {
   AlertDescription,
   Button,
   Flex,
+  Text
 } from '@chakra-ui/react';
 
 function DynamicTable() {
@@ -62,7 +63,7 @@ function DynamicTable() {
   // Estado de carregamento
   if (loading) {
     return (
-      <Flex justify="center" align="center" minH="400px">
+      <Flex justify="center" align="center" h="400px">
         <Spinner size="xl" color="blue.500" thickness="4px" />
       </Flex>
     );
@@ -79,7 +80,7 @@ function DynamicTable() {
             <AlertDescription>{error}</AlertDescription>
           </Box>
         </Alert>
-        <Button mt={4} colorScheme="blue" onClick={fetchData}>
+        <Button mt={4} colorScheme="white" onClick={fetchData}>
           Tentar Novamente
         </Button>
       </Box>
@@ -99,17 +100,21 @@ function DynamicTable() {
   }
 
   return (
-    <Box p={6} bg="gray.50" minH="100vh">
-      <Heading mb={6} size="lg" color="gray.700">
-        Dados do Backend
+    <Box h="100%" w="100%">
+      <Heading mb="20px"
+          fontSize="lg"
+          fontWeight="bold"
+          color="white"
+          alignContent="center">
+        Os dados chegaram!
       </Heading>
       
       <TableContainer bg="white" borderRadius="lg" boxShadow="md">
-        <Table variant="simple" colorScheme="blue">
-          <Thead bg="blue.500">
+        <Table variant="simple" colorScheme="white">
+          <Thead bg="gray.100">
             <Tr>
               {columns.map((column) => (
-                <Th key={column} color="white" textTransform="capitalize">
+                <Th key={column} color="#036DC5" textTransform="capitalize">
                   {column.replace('_', ' ')}
                 </Th>
               ))}
@@ -131,8 +136,8 @@ function DynamicTable() {
         </Table>
       </TableContainer>
       
-      <Button mt={4} colorScheme="blue" onClick={fetchData}>
-        Recarregar Dados
+      <Button mt={4} colorScheme="white" textAlign="Center" onClick={fetchData}>
+        <Text color="#036DC5"> Recarregar Dados</Text>
       </Button>
     </Box>
   );
