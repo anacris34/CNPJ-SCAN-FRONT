@@ -14,15 +14,16 @@ function HomePage() {
 	  <Header title="CNPJ Scan" />
 		
 	  {/* 2. Conteúdo Principal: Deve ter flexGrow={1} para ocupar o espaço restante. */}
-	  <Box 
+	  	<Box 
 		flexGrow={8} 
 		p={8} 
 		w="100%"
 		textAlign="center" 
-	  >
+	  	>
 		<Heading size="3xl" mb={8}>
 			Converta PDF para EXCEL.
 		</Heading>
+
 		<Flex
 		align='center'
 		justify='center'
@@ -30,13 +31,13 @@ function HomePage() {
 		<MeuBotao/>
 		</Flex>
 
-	  </Box>
+	  	</Box>
 
 	  {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
-	  <Footer 
+	  	<Footer 
 		title="CNPJ Scan" 
 		copyrightText="Grupo 3 NEXT"
-	  />
+	  	/>
 	</VStack>
   )
 }

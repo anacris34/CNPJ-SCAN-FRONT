@@ -1,45 +1,86 @@
 import {
+  Badge,
   Combobox,
   Portal,
-  Stack,
-  useFilter,
-  useListCollection,
+  Wrap,
+  createListCollection,
 } from "@chakra-ui/react"
+import { useMemo, useState } from "react"
 
+const campos = [
+  "Nome",
+  "CNPJ",
+  "CEP",
+  "Logradouro",
+  "Numero",
+  "Complemento",
+  "Bairro",
+  "Municipio",
+  "UF",
+  "Telefone",
+  "Situação",
+
+]
 
 const SelectBox = () => {
-  const { contains } = useFilter({ sensitivity: "base" })
+  const [searchValue, setSearchValue] = useState("")
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([])
 
-  const { collection, filter } = useListCollection({
-    initialItems: campos,
-    filter: contains,
-  })
+  const filteredItems = useMemo(
+    () =>
+      campos.filter((item) =>
+        item.toLowerCase().includes(searchValue.toLowerCase()),
+      ),
+    [searchValue],
+  )
+
+  const collection = useMemo(
+    () => createListCollection({ items: filteredItems }),
+    [filteredItems],
+  )
+
+  const handleValueChange = (details: Combobox.ValueChangeDetails) => {
+    setSelectedSkills(details.value)
+  }
 
   return (
     <Combobox.Root
-      collection={collection}
-      onInputValueChange={(e) => filter(e.inputValue)}
+      multiple
+      closeOnSelect
       width="320px"
-	
+      value={selectedSkills}
+      collection={collection}
+      onValueChange={handleValueChange}
+      onInputValueChange={(details) => setSearchValue(details.inputValue)}
     >
+      <Wrap gap="2">
+        {selectedSkills.map((skill) => (
+          <Badge key={skill}>{skill}</Badge>
+        ))}
+      </Wrap>
+
       <Combobox.Label>Selecione os dados que deseja converter :</Combobox.Label>
+
       <Combobox.Control>
-        <Combobox.Input placeholder="Selecione" />
+        <Combobox.Input />
         <Combobox.IndicatorGroup>
-          <Combobox.ClearTrigger />
           <Combobox.Trigger />
         </Combobox.IndicatorGroup>
       </Combobox.Control>
+
       <Portal>
         <Combobox.Positioner>
           <Combobox.Content color='black'>
-            <Combobox.Empty>No items found</Combobox.Empty>
-            {collection.items.map((item) => (
-              <Combobox.Item item={item} key={item.value}>
-                {item.label}
-                <Combobox.ItemIndicator />
-              </Combobox.Item>
-            ))}
+            <Combobox.ItemGroup>
+              <Combobox.ItemGroupLabel>Campos</Combobox.ItemGroupLabel>
+              {filteredItems.map((item) => (
+                <Combobox.Item key={item} item={item}>
+                  {item}
+                  <Combobox.ItemIndicator />
+                </Combobox.Item>
+              ))}
+              <Combobox.Empty>Não Encontrado</Combobox.Empty>
+            </Combobox.ItemGroup>
           </Combobox.Content>
         </Combobox.Positioner>
       </Portal>
@@ -47,17 +88,5 @@ const SelectBox = () => {
   )
 }
 
-const campos = [
-  { label: "Nome", value: "nome" },
-  { label: "CNPJ", value: "cnpj" },
-  { label: "CEP", value: "cep" },
-  { label: "Logradouro", value: "logradouro" },
-  { label: "Numero", value: "numero" },
-  { label: "Complemento", value: "complemento" },
-  { label: "Bairro", value: "bairro" },
-  { label: "Municipio", value: "municipio" },
-  { label: "UF", value: "uf" },
-  { label: "Telefone", value: "telefone" },
-  { label: "Situação", value: "situacao" },
-]
+
 export default SelectBox;
