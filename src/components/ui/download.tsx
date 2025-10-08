@@ -18,7 +18,7 @@ const DownloadCSV = () => {
         size="2xl"
         rounded="md"
       >
-        <IoMdDownload color="#036DC5"/>
+        <IoMdDownload color="#036DC5" />
         <Text color="#036DC5" textStyle="md" fontWeight="bold">
           Download CSV
         </Text>
