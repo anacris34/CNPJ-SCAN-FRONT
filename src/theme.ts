@@ -13,9 +13,9 @@ const theme = extendTheme({
         height: "100%",
         overflowX: "hidden",
       },
-    config: {
+      config: {
       initialColorMode: "dark"
-   }
+       },
       body: {
         height: "100%",
         margin: 0,
