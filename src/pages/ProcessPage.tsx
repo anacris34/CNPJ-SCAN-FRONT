@@ -40,8 +40,7 @@ function Process() {
         </Flex>
 
         </Box>
-    
-        {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
+        <txtespec/>
         <Footer 
         title="Pagina 2" 
         copyrightText="Grupo 3 NEXT"

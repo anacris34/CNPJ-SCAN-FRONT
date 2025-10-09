@@ -1,32 +1,31 @@
-// src/components/ui/header.tsx (Com Chakra UI)
-
+// src/components/ui/header.tsx (Chakra UI v3.2)
 import React, { FC } from "react";
-import { Flex, Image, Heading } from "@chakra-ui/react"; // 🚨 Importe os componentes Chakra
+import { Flex, Image, Heading, Button } from "@chakra-ui/react";
+import { useColorMode, useColorModeValue } from "./color-mode";
 import MenuHeader from "./historia";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
+import logoImage from "../assets/logo";
 
-interface HeaderProps {
-  title: string;
-  // ... outras props
-}
 
-// Criando um Header com o Flex do Chakra
 const Header: FC<HeaderProps> = ({ title }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const ThemeIcon = useColorModeValue(CiLight, MdDarkMode);
+
   return (
-    // Use Flex para o contêiner principal
     <Flex
       as="header"
       align="center"
-      justify="space-between" // separa esquerda e direita
+      justify="space-between"
       p={5}
       w="100%"
     >
       {/* Lado esquerdo: logo + título */}
-      <Flex align="center">
+      <Flex align="center" gap={4}>
         <Image
           src={logoImage}
           alt={`${title} logo`}
           h="90px"
-          mr={4}
           borderRadius="xl"
         />
         <Heading as="h1" size="3xl" fontFamily="Rag 123">
@@ -35,8 +34,11 @@ const Header: FC<HeaderProps> = ({ title }) => {
       </Flex>
 
       {/* Lado direito: botões */}
-      <Flex>
+      <Flex gap={2} align="center">
         <MenuHeader />
+        <Button onClick={toggleColorMode} variant="ghost" rounded="full">
+          <ThemeIcon size={20} />
+        </Button>
       </Flex>
     </Flex>
   );

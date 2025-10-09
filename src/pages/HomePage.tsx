@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../components/ui/header';
 import Footer from '../components/ui/footer';
 import MeuBotao from '../components/ui/button';
+import Txtespec from '../components/ui/text_descriptions';
 
 
 function HomePage() {
@@ -30,7 +31,7 @@ function HomePage() {
 		>
 		<MeuBotao/>
 		</Flex>
-
+		<Txtespec/>
 	  	</Box>
 
 	  {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
