@@ -35,7 +35,10 @@ function Download() {
           <DownloadCSV />
         </Flex>
       </Box>
-      <Footer title="CNPJ Scan" copyrightText="Grupo 3 NEXT" />
+      <Footer 
+        title="Página 3" 
+        copyrightText="Grupo 3 NEXT"
+	  	/>
     </VStack>
   );
 }

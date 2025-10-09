@@ -8,7 +8,7 @@ import MeuBotao from '../components/ui/button';
 function HomePage() {
   return (
 	// 1. Contêiner Principal: Deve ser um Flexbox (VStack/Flex) com altura total.
-	<VStack w="100%" minHeight="100vh" align="center"> 
+	<VStack w="100%" h="100%" align="center" justify="center" gap="10px"> 
 	  
 	  {/* Header */}
 	  <Header title="CNPJ Scan" />

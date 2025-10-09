@@ -32,8 +32,6 @@ function LoginPage() {
 		</Flex>
 
 	  	</Box>
-
-	  {/* 3. Footer: Deve ser o ÚLTIMO elemento e tem o 'mt="auto"' interno. */}
 	  	<Footer 
 		title="CNPJ Scan" 
 		copyrightText="Grupo 3 NEXT"
