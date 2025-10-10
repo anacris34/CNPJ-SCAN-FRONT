@@ -8,13 +8,13 @@ import DownloadCSV from "../components/ui/download";
 
 function Download() {
   return (
-    <VStack w="100%" h="100%" align="center" justify="center" gap="10px">
+    <VStack w="100%" minH="100vh" align="center">
       <Header title="CNPJ Scan" />
       <Box p="20px" w="100%" textAlign="center">
         <Heading size="3xl" spaceY={-5}>
           Converta PDF para EXCEL
         </Heading>
-        <Text mb="50px" fontSize="md" color="white">
+        <Text mb="30px" fontSize="md" color="white">
           Powered by Cesar School
         </Text>
         <Text
@@ -34,8 +34,8 @@ function Download() {
           <Home />
           <DownloadCSV />
         </Flex>
+        <Footer title="CNPJ Scan" copyrightText="Grupo 3 NEXT" />
       </Box>
-      <Footer title="CNPJ Scan" copyrightText="Grupo 3 NEXT" />
     </VStack>
   );
 }
