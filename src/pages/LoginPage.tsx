@@ -28,14 +28,14 @@ function LoginPage() {
 		align='center'
 		justify='center'
 		>
-			</Login>
+			<Login />
 		</Flex>
 
-	  	</Box>
-	  	<Footer 
+		</Box>
+		<Footer 
 		title="CNPJ Scan" 
 		copyrightText="Grupo 3 NEXT"
-	  	/>
+		/>
 	</VStack>
   )
 }
