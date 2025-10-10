@@ -5,7 +5,7 @@ import { useColorMode, useColorModeValue } from "./color-mode";
 import MenuHeader from "./historia";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import logoImage from "../assets/logo";
+import logoImage from "../../assets/logo.png"; // Certifique-se de que o caminho está correto
 
 
 const Header: FC<HeaderProps> = ({ title }) => {

@@ -1,5 +1,4 @@
-import { Box, Flex, Heading, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Center, Flex, Heading, VStack } from '@chakra-ui/react';
 import Header from '../components/ui/header';
 import Footer from '../components/ui/footer';
 import MeuBotao from '../components/ui/button';
