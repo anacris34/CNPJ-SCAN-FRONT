@@ -14,12 +14,13 @@ export async function uploadFileToBackend(file: File): Promise<{ success: boolea
     const formData = new FormData();
     // ⚠️ 'file' aqui deve CORRESPONDER ao nome do parâmetro no FastAPI (file: UploadFile = File(...))
     formData.append('file', file); 
-
+    console.log(formData)
+    
     try {
         const response = await fetch(UPLOAD_ENDPOINT, {
             method: 'POST',
             // O Content-Type é automaticamente definido como multipart/form-data
-            body: formData 
+            body: formData
         });
 
         if (!response.ok) {

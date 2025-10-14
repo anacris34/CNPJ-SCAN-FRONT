@@ -24,7 +24,7 @@ const MeuBotao: React.FC = () => {
       <FileUpload.HiddenInput />
       <FileUpload.Trigger asChild>
         <Button // Props do Chakra UI
-          colorScheme='white' 
+          colorScheme='gray' 
           size='2xl'
           variant='solid'
           >
