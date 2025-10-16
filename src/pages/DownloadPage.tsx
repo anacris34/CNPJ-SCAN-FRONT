@@ -1,6 +1,6 @@
 import { VStack, Flex, Heading, Box, Text, Center } from "@chakra-ui/react";
 import Home from "../components/ui/casa";
-import Tabela from "../components/ui/tabela";
+import DynamicTable from "../components/ui/tablefinal";
 import Header from '../components/ui/header';
 import Footer from '../components/ui/footer';
 import DownloadCSV from "../components/ui/download";
@@ -27,14 +27,13 @@ function Download() {
           Os dados chegaram!
         </Text>
         <Center mb="20px">
-          <Tabela />
+          <DynamicTable />
         </Center>
 
         <Flex align="top-center" justify="center" gap={7} mt={2}>
           <Home />
           <DownloadCSV />
         </Flex>
-        <Footer title="CNPJ Scan" copyrightText="Grupo 3 NEXT" />
       </Box>
       <Footer 
         title="Página 3" 

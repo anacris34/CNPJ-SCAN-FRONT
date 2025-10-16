@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   return (
     <Link href="/" _hover={{ textDecoration: "none" }}>
       <IconButton
-        color="white"
+        bg="white"
         aria-label="Ir para home"
         boxShadow="md"
         rounded="full"

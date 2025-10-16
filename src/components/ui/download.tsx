@@ -25,14 +25,14 @@ function DownloadCSV({ data }: { data: any[] }) {
   return (
     <Button
       onClick={handleDownload}
-      leftIcon={<IoMdDownload />}
-      bg="#036DC5"
-      color="white"
+      bg= "white"
+      color= "#036DC5"
       _hover={{ bg: "#bed8f1ff" }}
       size="lg"
       rounded="md"
       boxShadow="md"
     >
+      <IoMdDownload />
       Download
     </Button>
   );
