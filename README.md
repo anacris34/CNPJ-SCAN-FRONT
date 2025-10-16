@@ -72,7 +72,6 @@ Para rodar este projeto localmente, você precisa ter:
 2.  **Instale as dependências:**
     ```bash
     npm install 
-    # ou yarn install
     ```
 
 3.  **Variáveis de Ambiente:**
