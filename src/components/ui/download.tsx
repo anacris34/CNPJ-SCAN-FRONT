@@ -1,25 +1,21 @@
 import { Button } from "@chakra-ui/react";
 import { IoMdDownload } from "react-icons/io";
+import { fetchCSV } from "../../api/download_csv";
 
-function DownloadCSV({ data }: { data: any[] }) {
-  const handleDownload = () => {
-    if (!data || data.length === 0) return;
-
-    const headers = Object.keys(data[0]);
-    const rows = data.map((row) =>
-      headers.map((h) => JSON.stringify(row[h] ?? "")).join(",")
-    );
-    const csv = [headers.join(","), ...rows].join("\n");
-
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "dados_tabela.csv";
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+function DownloadCSV() {
+  const handleDownload = async () => {
+    try {
+      const blob = await fetchCSV();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "dados_tabela.csv";
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Erro ao baixar o arquivo:", error);
+    }
   };
 
   return (
