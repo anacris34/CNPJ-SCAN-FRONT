@@ -1,10 +1,3 @@
-/**
- * DataTable Component - Dynamic Table with API Integration
- * Path: C:\Users\Pedro\Documents\vscode\NeXT\Projeto_CS\CNPJ-SCAN-FRONT\src\components\ui\DataTable.tsx
- * 
- * Componente de tabela dinâmica que se conecta com FastAPI
- */
-
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -20,15 +13,9 @@ import {
 } from '../../api/post_csv';
 
 interface DataTableProps {
-  /** Callback executado quando os dados são carregados */
   onDataLoaded?: (data: DataRow[]) => void;
-  /** Filtros personalizados para enviar na requisição */
   filters?: Record<string, any>;
-  /** Título da tabela */
   title?: string;
-  /** Mostrar botão de download CSV */
-  showDownloadButton?: boolean;
-  /** Altura mínima da tabela */
   minHeight?: string;
 }
 
@@ -36,7 +23,6 @@ function DataTable({
   onDataLoaded,
   filters = {},
   title = 'Dados Extraídos',
-  showDownloadButton = true,
   minHeight = '400px',
 }: DataTableProps) {
   const [data, setData] = useState<DataRow[]>([]);
@@ -44,11 +30,7 @@ function DataTable({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
-  const [downloadingCSV, setDownloadingCSV] = useState(false);
 
-  /**
-   * Função para buscar dados da API
-   */
   const loadData = async () => {
     setLoading(true);
     setError(null);
@@ -81,27 +63,23 @@ function DataTable({
     }
   };
 
-  // Carregar dados ao montar o componente
   useEffect(() => {
     loadData();
   }, []);
 
-  // Recarregar dados se os filtros mudarem
   useEffect(() => {
     if (Object.keys(filters).length > 0) {
       loadData();
     }
   }, [JSON.stringify(filters)]);
 
-  /**
-   * Renderização: Loading State
-   */
+
   if (loading) {
     return (
       <Box minH={minHeight}>
         <Flex justify="center" align="center" h="100%" direction="column" gap={4}>
           <Spinner size="xl" color="blue.500" />
-          <Text color="gray.600" fontSize="sm">
+          <Text color="white" fontSize="sm">
             Carregando dados do servidor...
           </Text>
         </Flex>
@@ -109,9 +87,6 @@ function DataTable({
     );
   }
 
-  /**
-   * Renderização: Error State
-   */
   if (error) {
     return (
       <Box minH={minHeight}>
@@ -125,10 +100,10 @@ function DataTable({
           borderRadius="lg"
           p={8}
         >
-          <Text color="red.600" fontWeight="semibold" textAlign="center">
+          <Text color="gray.300" fontWeight="semibold" textAlign="center">
             {error}
           </Text>
-          <Button colorScheme="red" variant="outline" onClick={loadData} size="sm">
+          <Button variant="outline" onClick={loadData} size="sm">
             Tentar Novamente
           </Button>
         </Flex>
@@ -136,9 +111,6 @@ function DataTable({
     );
   }
 
-  /**
-   * Renderização: Empty State
-   */
   if (data.length === 0) {
     return (
       <Box minH={minHeight}>
@@ -153,7 +125,7 @@ function DataTable({
           <Text color="gray.600" fontWeight="semibold">
             Nenhum dado disponível
           </Text>
-          <Button colorScheme="blue" variant="ghost" onClick={loadData} size="sm">
+          <Button boxAlign="center" colorScheme="blue" variant="ghost" onClick={loadData} size="sm">
             Recarregar
           </Button>
         </Flex>
@@ -161,9 +133,6 @@ function DataTable({
     );
   }
 
-  /**
-   * Renderização: Tabela com Dados
-   */
   return (
     <Box w="100%" h="100%">
       {/* Header da Tabela */}
@@ -203,7 +172,6 @@ function DataTable({
         </Flex>
       </Flex>
 
-      {/* Tabela */}
       <Box
         bg="white"
         borderRadius="lg"
@@ -247,7 +215,6 @@ function DataTable({
           </Table.Root>
         </Box>
 
-        {/* Footer com contador */}
         <Flex
           justify="space-between"
           align="center"
