@@ -14,17 +14,8 @@ function Download() {
         <Heading size="3xl" spaceY={-5}>
           Converta PDF para EXCEL
         </Heading>
-        <Text mb="30px" fontSize="md" color="white">
+        <Text mb="40px" fontSize="md" color="white">
           Powered by Cesar School
-        </Text>
-        <Text
-          mb="20px"
-          fontSize="lg"
-          fontWeight="bold"
-          color="white"
-          alignContent="center"
-        >
-          Os dados chegaram!
         </Text>
         <Center mb="20px">
           <DynamicTable />
