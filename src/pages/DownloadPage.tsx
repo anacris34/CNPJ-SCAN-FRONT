@@ -17,7 +17,7 @@ function Download() {
         <Text mb="40px" fontSize="md" color="white">
           Powered by Cesar School
         </Text>
-        <Center mb="20px">
+        <Center>
           <DynamicTable />
         </Center>
 
