@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, FileUpload } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Text, FileUpload } from '@chakra-ui/react';
 import { HiUpload } from "react-icons/hi"
 
 
@@ -17,13 +17,14 @@ const MeuBotao: React.FC = () => {
       direction='column'
       align='center'
       justify='center'
+      minH='40vh'
       gap={4} 
     >
     <FileUpload.Root>
       <FileUpload.HiddenInput />
       <FileUpload.Trigger asChild>
         <Button // Props do Chakra UI
-          colorScheme='white' 
+          colorScheme='gray' 
           size='2xl'
           variant='solid'
           >

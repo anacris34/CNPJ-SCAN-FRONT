@@ -6,8 +6,11 @@ import Tabela from '@/components/ui/tabela';
 
 function Process() {
   return (
-    <VStack w="100%" minH="100vh" align="center" gap="10px">
-      <Header title="CNPJ Scan" />
+      // 1. Contêiner Principal: Deve ser um Flexbox (VStack/Flex) com altura total.
+      <VStack w="100%" h="100%" align="center" justify="center" gap="10px"> 
+        
+        {/* Header */}
+        <Header title="CNPJ Scan" />
         
         {/* 2. Conteúdo Principal: Deve ter flexGrow={1} para ocupar o espaço restante. */}
         <Box 
