@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, Link } from "react-router-dom";
-import LoadingPage from "./components/loadingPage/loadingPage"
+import LoadingPage from "./pages/loadingPage"
 
 function App() {
   return (
